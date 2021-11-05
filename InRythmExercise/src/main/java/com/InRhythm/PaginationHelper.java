@@ -7,7 +7,7 @@ import java.util.List;
 public class PaginationHelper {
 
     private final List<Object[]> pages;
-    private final int highestIndex;
+    private final int itemCount;
     private final int pageSize;
 
     public PaginationHelper(Object[] objects, int itemsPerPage) throws invalidItemsPerPageException {
@@ -15,14 +15,14 @@ public class PaginationHelper {
             throw new invalidItemsPerPageException("Items per page must be a positive Integer");
 
         pageSize = itemsPerPage;
-        highestIndex = objects.length;
+        itemCount = objects.length;
         int upperLimit = itemsPerPage;
 
         pages = new ArrayList<Object[]>();
-        for (int lowerLimit = 0; lowerLimit < highestIndex; lowerLimit += itemsPerPage) {
+        for (int lowerLimit = 0; lowerLimit < itemCount; lowerLimit += itemsPerPage) {
             Object[] page;
-            if (upperLimit > highestIndex) {
-                page = Arrays.copyOfRange(objects, lowerLimit, highestIndex);
+            if (upperLimit > itemCount) {
+                page = Arrays.copyOfRange(objects, lowerLimit, itemCount);
             } else
                 page = Arrays.copyOfRange(objects, lowerLimit, upperLimit);
             pages.add(page);
@@ -54,8 +54,12 @@ public class PaginationHelper {
      * @return page where object is stored
      */
     public int pageIndex(int index) {
-        if (index >= 0 && index < highestIndex)
+        if (index >= 0 && index < itemCount)
             return (index / pageSize);
         else return -1;
+    }
+
+    public int itemCount(){
+        return itemCount;
     }
 }
