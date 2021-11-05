@@ -21,22 +21,34 @@ public class PaginationHelperTest {
     }
 
     @Test
-    public void testPageItemCount() throws invalidItemsPerPageException {
+    public void testPageItemCountPositive() throws invalidItemsPerPageException {
+        Object[] pageContents = new Object[]{'a','b','c','d','e','f'};
+        PaginationHelper helper = new PaginationHelper(pageContents,4);
+        Assert.assertEquals(helper.pageItemCount(0),4);
+        Assert.assertEquals(helper.pageItemCount(1),2);
+    }
+
+    @Test
+    public void testPageItemCountNegative() throws invalidItemsPerPageException {
         Object[] pageContents = new Object[]{'a','b','c','d','e','f'};
         PaginationHelper helper = new PaginationHelper(pageContents,4);
         Assert.assertEquals(helper.pageItemCount(-1),-1);
-        Assert.assertEquals(helper.pageItemCount(0),4);
-        Assert.assertEquals(helper.pageItemCount(1),2);
         Assert.assertEquals(helper.pageItemCount(2),-1);
     }
 
     @Test
-    public void testItemCount() throws invalidItemsPerPageException {
+    public void testItemCountPositive() throws invalidItemsPerPageException {
         Object[] pageContents = new Object[]{'a','b','c','d','e','f'};
         PaginationHelper helper = new PaginationHelper(pageContents,4);
         Assert.assertEquals(helper.pageIndex(5),1);
         Assert.assertEquals(helper.pageIndex(2),0);
-        Assert.assertEquals(helper.pageItemCount(20),-1);
-        Assert.assertEquals(helper.pageItemCount(-10),-1);
+    }
+
+    @Test
+    public void testItemCountNegative() throws invalidItemsPerPageException {
+        Object[] pageContents = new Object[]{'a','b','c','d','e','f'};
+        PaginationHelper helper = new PaginationHelper(pageContents,4);
+        Assert.assertEquals(helper.pageIndex(5),1);
+        Assert.assertEquals(helper.pageIndex(2),0);
     }
 }

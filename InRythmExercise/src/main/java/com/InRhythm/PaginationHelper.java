@@ -30,16 +30,29 @@ public class PaginationHelper {
         }
     }
 
+    /**
+     * @return Number of pages for instance of PaginationHelper
+     */
     public int pageCount() {
         return pages.size();
     }
 
+    /**
+     * Returns the number of items stored on the page given
+     * @param pageNumber index of page
+     * @return item count for page
+     */
     public int pageItemCount(int pageNumber) {
         if (pageNumber >= 0 && pageNumber < pages.size())
             return pages.get(pageNumber).length;
         else return -1;
     }
 
+    /**
+     * Returns the page where the object being given can be found
+     * @param index index for object of interest (index can be determined from input array)
+     * @return page where object is stored
+     */
     public int pageIndex(int index) {
         if (index >= 0 && index < highestIndex)
             return (index / pageSize);
