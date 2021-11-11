@@ -14,7 +14,7 @@ public class PaginationHelper {
         if (itemsPerPage <= 0)
             throw new invalidItemsPerPageException("Items per page must be a positive Integer");
         if (objects == null)
-            throw new invalidItemsException("input array must not be null");
+            throw new invalidItemsException("Input array must not be null");
         pageSize = itemsPerPage;
         itemCount = objects.length;
         int upperLimit = itemsPerPage;
@@ -62,6 +62,9 @@ public class PaginationHelper {
         else return -1;
     }
 
+    /**
+     * @return total number of Items for instance of PaginationHelper across all pages
+     */
     public int itemCount() {
         return itemCount;
     }
