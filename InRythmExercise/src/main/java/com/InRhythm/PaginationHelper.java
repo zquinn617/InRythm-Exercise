@@ -10,10 +10,11 @@ public class PaginationHelper {
     private final int itemCount;
     private final int pageSize;
 
-    public PaginationHelper(Object[] objects, int itemsPerPage) throws invalidItemsPerPageException {
+    public PaginationHelper(Object[] objects, int itemsPerPage) throws invalidItemsPerPageException, invalidItemsException {
         if (itemsPerPage <= 0)
             throw new invalidItemsPerPageException("Items per page must be a positive Integer");
-
+        if (objects == null)
+            throw new invalidItemsException("input array must not be null");
         pageSize = itemsPerPage;
         itemCount = objects.length;
         int upperLimit = itemsPerPage;
@@ -39,6 +40,7 @@ public class PaginationHelper {
 
     /**
      * Returns the number of items stored on the page given
+     *
      * @param pageNumber index of page
      * @return item count for page
      */
@@ -50,6 +52,7 @@ public class PaginationHelper {
 
     /**
      * Returns the page where the object being given can be found
+     *
      * @param index index for object of interest (index can be determined from input array)
      * @return page where object is stored
      */
@@ -59,7 +62,7 @@ public class PaginationHelper {
         else return -1;
     }
 
-    public int itemCount(){
+    public int itemCount() {
         return itemCount;
     }
 }
