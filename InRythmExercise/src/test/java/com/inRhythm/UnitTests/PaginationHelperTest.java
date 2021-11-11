@@ -26,8 +26,6 @@ public class PaginationHelperTest {
     @Test(expectedExceptions = {invalidItemsException.class})
     public void testNullItems() throws invalidItemsPerPageException, invalidItemsException {
         helper = new PaginationHelper(null, 10);
-        Assert.assertEquals(helper.itemCount(),0);
-        Assert.assertEquals(helper.pageCount(), 0);
     }
 
     @Test
